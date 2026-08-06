@@ -18,16 +18,16 @@
 
 ## Why I built this
 
-At my previous company, we regularly shared LinkedIn posts on WhatsApp. Every third-party shortener we tried exposed its own branding in the URL (`tinyurl.com/...`, `bit.ly/...`) — which wasn't approved for company use. So I built LinkCraft: a shortener that runs under your own domain **and** lets you control exactly what preview (title, description, thumbnail) shows up when the link is shared — something most shorteners don't offer at all.
+At my previous company, the sales team regularly shared partnership and collaboration LinkedIn posts with their connections, CHROs, and CFOs on WhatsApp. When you copy a LinkedIn post link directly, you get an ugly, long URL and a vague, generic thumbnail that says nothing about the actual content. Using a third-party shortener wasn't an option either, since it exposed branding that wasn't approved for company use. So I built LinkCraft: a shortener that runs under your own domain, and lets you control exactly what preview (title, description, thumbnail) shows up when the link is shared, something most shorteners don't offer at all.
 
 ## Features
 
-- 🔗 **Custom aliases** — pick your own short code (`/quarterly-report`) instead of a random one
-- 🖼️ **Branded link previews** — dynamic Open Graph meta tags mean shared links show a custom title, description, and thumbnail on WhatsApp, LinkedIn, and elsewhere, instead of a generic preview
-- ⚡ **Rate limiting** — 5 requests/minute per IP on link creation, protecting against spam/abuse
-- ✅ **URL validation** — rejects malformed input before it touches the database
-- 📊 **Live stats** — real-time link count and measured API response time, pulled straight from the backend
-- 🎨 **Custom-built UI** — glassmorphic dark theme, click-to-reveal optional fields, clipboard copy/paste integration
+- 🔗 **Custom aliases** : pick your own short code (`/quarterly-report`) instead of a random one
+- 🖼️ **Branded link previews** : dynamic Open Graph meta tags mean shared links show a custom title, description, and thumbnail on WhatsApp, LinkedIn, and elsewhere, instead of a generic preview
+- ⚡ **Rate limiting** : 5 requests/minute per IP on link creation, protecting against spam/abuse
+- ✅ **URL validation** : rejects malformed input before it touches the database
+- 📊 **Live stats** : real-time link count and measured API response time, pulled straight from the backend
+- 🎨 **Custom-built UI** : glassmorphic dark theme, click-to-reveal optional fields, clipboard copy/paste integration
 
 ## Tech Stack
 
@@ -41,9 +41,9 @@ At my previous company, we regularly shared LinkedIn posts on WhatsApp. Every th
 
 ## How it works
 
-1. **Shortening** — a submitted URL gets an auto-incrementing database ID, which is encoded into a compact string using **Base62** (`0-9`, `a-z`, `A-Z`) — the same technique used by production-grade shorteners to keep codes short.
-2. **Custom previews** — visiting a short link doesn't redirect instantly. It first serves a lightweight HTML page containing Open Graph meta tags (title, description, image), plus a `<meta http-equiv="refresh">` tag that sends real users onward almost instantly. Crawlers (WhatsApp, LinkedIn) read the meta tags without waiting for the redirect — so both bots and humans get exactly what they need from the same page.
-3. **Rate limiting** — every request to the creation endpoint is tracked by IP address; exceeding the limit returns a clean `429` response instead of crashing or spamming the database.
+1. **Shortening**: a submitted URL gets an auto-incrementing database ID, which is encoded into a compact string using **Base62** (`0-9`, `a-z`, `A-Z`), the same technique used by production-grade shorteners to keep codes short.
+2. **Custom previews**: visiting a short link doesn't redirect instantly. It first serves a lightweight HTML page containing Open Graph meta tags (title, description, image), plus a `<meta http-equiv="refresh">` tag that sends real users onward almost instantly. Crawlers (WhatsApp, LinkedIn) read the meta tags without waiting for the redirect, so both bots and humans get exactly what they need from the same page.
+3. **Rate limiting**: every request to the creation endpoint is tracked by IP address; exceeding the limit returns a clean `429` response instead of crashing or spamming the database.
 
 ## API
 
@@ -57,9 +57,9 @@ At my previous company, we regularly shared LinkedIn posts on WhatsApp. Every th
 
 Being upfront about trade-offs I made for this project's current scope:
 
-- **SQLite on the free-tier host is ephemeral** — data doesn't persist across server restarts. A production version would use PostgreSQL or another persistent store.
-- **IP-based rate limiting** can be bypassed by IP rotation or shared networks — acceptable for this scope, not bulletproof at scale.
-- **Thumbnails are set via image URL**, not direct file upload — planned as a future enhancement.
+- **SQLite on the free-tier host is ephemeral**: data doesn't persist across server restarts. A production version would use PostgreSQL or another persistent store.
+- **IP-based rate limiting** can be bypassed by IP rotation or shared networks. Acceptable for this scope, not bulletproof at scale.
+- **Thumbnails are set via image URL**, not direct file upload. Planned as a future enhancement.
 
 ## Run it locally
 
