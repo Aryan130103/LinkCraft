@@ -1,0 +1,430 @@
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: #111111;
+    --input-bg: #161616;
+    --text-color: #f5f5f5;
+    --muted-text: #999999;
+    --accent-color: #7c3aed;
+    --accent-hover: #6d28d9;
+    --border-color: #2a2a2a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    height: 100vh;
+    overflow-y: auto;
+    position: relative;
+}
+button, input {
+    font-family: inherit;
+}
+
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+.header, .card, footer {
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 160px;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: 700;
+    margin: -10px;
+    letter-spacing: 1px;
+}
+
+.developer-info {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.4);
+    border-radius: 20px;
+    padding: 6px 16px;
+    margin-top: 20px;
+}
+
+.developer-info .tagline {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0.3px;
+    color: var(--muted-text);
+}
+
+.developer-info .name {
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.accent {
+    background: linear-gradient(90deg, #ec4899, #7c3aed, #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.name{
+    color: white;
+    font-size: 15px;
+    align-items: center;
+}
+/*
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 650px;
+}*/
+.card {
+    background-color: rgba(5, 5, 5, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 650px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 40px;
+    padding: 12px 16px;
+    gap: 10px;
+}
+
+.url-input {  
+    border-color: rgba(124, 58, 237, 0.5);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.input-group:focus-within {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+.input-group input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-color);
+    font-size: 14px;
+    width: 100%;
+}
+
+.input-group input::placeholder {
+    color: var(--muted-text);
+}
+
+#paste-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(124, 58, 237, 0.15);
+    border: 1px solid var(--accent-color);
+    color: var(--muted-text);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+#paste-btn img {
+    filter: brightness(0) invert(1);
+}
+
+#paste-btn:hover {
+    background-color: rgba(124, 58, 237, 0.25);
+}
+
+.section-label {
+    color: var(--muted-text);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 4px 0 0 4px;
+    text-align: left;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 8px 0 4px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.toggle-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: rgba(124, 58, 237, 0.08);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 14px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.toggle-btn img {
+    filter: brightness(0) saturate(100%) invert(45%) sepia(60%) saturate(3000%) hue-rotate(250deg);
+    flex-shrink: 0;
+}
+
+.btn-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.btn-title {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.btn-subtitle {
+    font-size: 12px;
+    color: var(--muted-text);
+    margin-top: 2px;
+}
+
+.arrow {
+    color: var(--muted-text);
+    font-size: 18px;
+}
+
+.toggle-btn:hover {
+    border-color: var(--accent-color);
+    background-color: rgba(124, 58, 237, 0.15);
+}
+
+.toggle-btn.active {
+    border-color: var(--accent-color);
+}
+
+.submit-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+}
+
+#shorten-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    color: white;
+    border: none;   
+    padding: 12px 50px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+    transition: opacity 0.2s ease;
+    width: 100%;
+}
+
+#shorten-btn img {
+    filter: brightness(0) invert(1);
+}
+
+#shorten-btn:hover {
+    opacity: 0.9;
+}
+
+#result-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--input-bg);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 12px;
+}
+
+#result-link {
+    color: white;
+    font-size: 15px;
+    word-break: break-all;
+}
+
+#copy-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+}
+
+#copy-btn img {
+    filter: brightness(0) invert(1);
+}
+
+footer {
+    margin-top: 8cqh;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted-text);
+}
+
+.brand {
+    color: var(--accent-color);
+}
+
+.social-links {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 12px;
+    z-index: 2;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.social-links a:hover {
+    border-color: var(--accent-color);
+    background-color: rgba(124, 58, 237, 0.15);
+}
+
+.social-links img {
+    filter: brightness(0) invert(1);
+    opacity: 0.8;
+}
+
+#stats-bar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 18px;
+    background-color: rgba(5, 5, 5, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--accent-color);
+    border-radius: 12px;
+    border-opacity: 0.2;
+    z-index: 2;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.stat-item span:first-child {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.stat-label {
+    color: var(--muted-text);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-top: 5px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#result-container.error #result-link {
+    color: #ef4444;
+}
+
+#result-container.error {
+    border-color: #ef4444;
+}
+
+#copy-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
