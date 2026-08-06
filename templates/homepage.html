@@ -4,10 +4,12 @@
     <title>LinkCraft</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/webp" href="{{ url_for('static', filename='assets/lc_logo.webp') }}">
 </head>
 <body>
     <video autoplay muted loop id="bg-video">
-        <source src="{{ url_for('static', filename='assets/bg.mp4') }}" type="video/mp4">
+    <source src="{{ url_for('static', filename='assets/bg.webm') }}" type="video/webm">
+    <source src="{{ url_for('static', filename='assets/bg.mp4') }}" type="video/mp4">
     </video>
 
     <div class="social-links">
@@ -18,7 +20,10 @@
     </div>
 
     <div class="header">
+        <picture>
+        <source srcset="{{ url_for('static', filename='assets/lc_logo.webp') }}" type="image/webp">
         <img src="{{ url_for('static', filename='assets/lc_logo.png') }}" alt="LinkCraft logo" class="logo">
+        </picture>
         <h1>Link<span class="accent">Craft</span></h1>
         <div class="developer-info">
             <p class="tagline">Developer - <span class="name">Aryan Raj</span></p>
