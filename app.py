@@ -6,6 +6,8 @@ import time
 from utils import encode_base62, url_validation
 from urllib.parse import urlparse
 from database import setup_database
+import os
+
 app=Flask(__name__)
 setup_database()  # Ensure the database is set up when the app starts
 limiter = Limiter(get_remote_address, app=app, default_limits=["200 per day"])  #Every IP can create 200 links per day
@@ -95,4 +97,5 @@ def stats():
     return {"links_created": count, "avg_response_ms": round(avg_time * 1000, 2)}
 
 if __name__ == '__main__':
-    app.run(debug=True)  
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False)
