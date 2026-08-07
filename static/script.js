@@ -2,13 +2,22 @@
 document.getElementById('bg-video').playbackRate = 0.6;
 
 // Toggle-to-reveal behavior for optional fields
+if (!('ontouchstart' in window)) {
+    document.body.classList.add('has-hover');
+}
+
 document.querySelectorAll('.toggle-btn').forEach(function(button) {
     button.addEventListener('click', function() {
         const target = button.getAttribute('data-target');
         const field = document.getElementById('field-' + target);
 
         field.classList.toggle('hidden');
-        button.classList.toggle('active');
+        
+        if (field.classList.contains('hidden')) {
+            button.classList.remove('active');
+        } else {
+            button.classList.add('active');
+        }
     });
 });
 
