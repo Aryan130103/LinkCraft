@@ -47,6 +47,8 @@ document.getElementById('shorten-form').addEventListener('submit', async functio
     document.getElementById('result-container').style.display = 'flex';
     document.getElementById('result-container').classList.remove('error');
     document.getElementById('copy-btn').disabled = false;
+
+    loadStats();
 });
 
 // Copy button
@@ -70,4 +72,24 @@ async function loadStats() {
     document.getElementById('avg-response').textContent = data.avg_response_ms + 'ms';
 }
 
+//media query for mobile responsiveness
+function updateLayoutForScreenSize() {
+    const statsBar = document.getElementById('stats-bar');
+    if (window.innerWidth <= 600) {
+        statsBar.style.position = 'static';
+        statsBar.style.margin = '20px auto 0';
+        statsBar.style.top = 'auto';
+        statsBar.style.left = 'auto';
+    } else {
+        statsBar.style.position = 'fixed';
+        statsBar.style.top = '20px';
+        statsBar.style.left = '20px';
+        statsBar.style.margin = '0';
+    }
+}
+
+updateLayoutForScreenSize();
+window.addEventListener('resize', updateLayoutForScreenSize);
+
 loadStats();
+

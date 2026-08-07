@@ -428,3 +428,56 @@ footer {
     opacity: 0.3;
     cursor: not-allowed;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 16px;
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+    }
+
+    .social-links {
+        top: 16px;
+        right: 16px;
+        gap: 8px;
+    }
+
+    .social-links a {
+        width: 30px;
+        height: 30px;
+    }
+
+    .header {
+        margin-top: 50px;
+    }
+
+    .logo {
+        width: 100px;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .toggle-row {
+        grid-template-columns: 1fr;
+    }
+
+    .input-group {
+        flex-wrap: wrap;
+    }
+
+    #paste-btn {
+        margin-top: 6px;
+    }
+
+    #shorten-btn {
+        padding: 12px 20px;
+    }
+}
