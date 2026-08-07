@@ -72,6 +72,10 @@ document.getElementById('paste-btn').addEventListener('click', async function() 
     document.getElementById('url-field').value = text;
 });
 
+document.getElementById('url-field').addEventListener('input', function() {
+    document.getElementById('result-container').style.display = 'none';
+});
+
 //Stats bar update
 async function loadStats() {
     const response = await fetch('/stats');
